@@ -43,13 +43,14 @@ exports.postTokenCreateToken = (req, res) => {
     // Vérifier si les informations de connexion sont valides en parcourant le tableau d'utilisateurs
     const user = users.find(u => u.login === login && u.password === password);
   
-    if (user) {
-      const token = jwt.sign({ user }, 'my_secret_key');
-      res.status(201).send(`Token successful created ${token }`);
-    } else {
-      res.status(401).send('Identifiants invalides');
-    }
+   if (user) {
+    const token = jwt.sign({ user }, 'my_secret_key');
+    res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+    res.status(201).send({ token });
+  } else {
+    res.status(401).send('Identifiants invalides');
   }
+}
 
 
 /*****************************************************
