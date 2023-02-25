@@ -45,7 +45,6 @@ exports.postTokenCreateToken = (req, res) => {
   
    if (user) {
     const token = jwt.sign({ user }, 'my_secret_key');
-    res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
     res.status(201).send({ token });
   } else {
     res.status(401).send('Identifiants invalides');
