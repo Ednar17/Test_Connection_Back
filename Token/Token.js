@@ -9,6 +9,7 @@ const app = express();
  *****************************************************/
 
 exports.getTokenProtection = (req, res) => {
+         console.log("Recu : GET /token/");
         jwt.verify(req.token,'my_secret_key',function(err,data){
             if(err){
                 res.sendStatus(403);
@@ -27,6 +28,7 @@ exports.getTokenProtection = (req, res) => {
  *****************************************************/
 
 exports.postTokenCreateToken = (req, res) => {
+    console.log("Recu : POST /token/"+req.params.login);
     const login = req.body.login;
     const password = req.body.password;
   
